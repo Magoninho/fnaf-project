@@ -1,0 +1,1 @@
+{"version":3,"file":"Animatronic.js","sourceRoot":"","sources":["../../src/Animatronics/Animatronic.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,WAAW;IAK/B,YAAY,IAAY;QAFjB,gBAAW,GAAW,CAAC,CAAC;QAG9B,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;IAClB,CAAC;IAEM,SAAS;QACf,OAAO,CAAC,GAAG,CAAC,GAAG,IAAI,CAAC,IAAI,mCAAmC,CAAC,CAAC;IAC9D,CAAC;CACD"}
