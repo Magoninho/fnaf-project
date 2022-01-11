@@ -1,8 +1,14 @@
+import * as Constants from "../Constants.js";
 export default class Camera {
     constructor(image) {
+        this.animatronics = []; // animatronics in camera
         this.image = image;
     }
     addAnimatronic(animatronic) {
+        this.animatronics.push(animatronic);
+    }
+    clear() {
+        this.animatronics = [];
     }
     hasAnimatronic(name) {
         for (const a of this.animatronics) {
@@ -15,12 +21,13 @@ export default class Camera {
         }
         return false;
     }
-    render() {
-        const img = document.getElementById("image");
-        img.src = this.image.src;
-        const p = document.getElementById("camera-name");
-        p.innerText = this.name;
+    render(ctx) {
+        ctx.drawImage(this.image, 0, 0, Constants.WIDTH, Constants.HEIGHT);
+        // console.log(this.animatronics)
         // TODO: render animatronics
+        for (const animatronic of this.animatronics) {
+            animatronic.render(ctx);
+        }
     }
 }
 //# sourceMappingURL=Camera.js.map

@@ -13,9 +13,10 @@ import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
 import ImageUtils from "./ImageUtils.js";
 export default class Game {
-    constructor() {
+    constructor(ctx) {
         this.cameraSystem = new CameraSystem();
         this.animatronicSystem = new AnimatronicSystem();
+        this.ctx = ctx;
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -25,22 +26,28 @@ export default class Game {
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera1.png")),
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera2.jpg"))
             ]);
+            this.cameraSystem.addAnimatronics(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
             this.cameraSystem.getCameras()[2].name = "Pirate Cove";
             this.setupButtons();
-            this.cameraSystem.setCamera(1);
-            this.cameraSystem.render();
+            this.cameraSystem.setCamera(0);
+            this.cameraSystem.animatronicSystem.moveFreddy();
+            // this.cameraSystem.animatronicSystem.moveFreddy();
+            // improvised game loop
+            setInterval(() => {
+                this.update();
+                this.render();
+            }, 1000 / 30);
         });
     }
     setupButtons() {
-        // temporario
+        // sistema temporario
         for (let c = 0; c < this.cameraSystem.getCameras().length; c++) {
             const btn = Button.createButtonElement("Camera " + c);
             document.getElementById("buttons").appendChild(btn);
             btn.addEventListener("click", () => {
                 this.cameraSystem.setCamera(c);
-                this.cameraSystem.render();
                 document.getElementById("camera-change-audio").load();
                 document.getElementById("camera-change-audio").play();
             });
@@ -49,6 +56,8 @@ export default class Game {
     update() {
     }
     render() {
+        this.cameraSystem.render(this.ctx);
+        // this.cameraSystem.animatronicSystem.renderAnimatronic(this.ctx, 0);
     }
 }
 //# sourceMappingURL=Game.js.map

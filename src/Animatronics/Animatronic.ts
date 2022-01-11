@@ -7,6 +7,15 @@ export default class Animatronic {
 		this.name = name;
 	}
 
+	public addSprite(sprite: HTMLImageElement) {
+		this.sprite = sprite;
+	}
+
+	public render(ctx: CanvasRenderingContext2D) {
+		// TODO
+		ctx.drawImage(this.sprite, 50, 50, 100, 200);
+	}
+
 	public jumpscare() {
 		console.log(`${this.name}: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`);
 	}

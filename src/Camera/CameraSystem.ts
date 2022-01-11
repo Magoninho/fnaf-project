@@ -10,8 +10,28 @@ export default class CameraSystem {
 		this.cameras = cameras;
 	}
 
-	public render() {
-		this.cameras[this.currentCamera].render();
+	public addAnimatronics(animatronicSystem: AnimatronicSystem) {
+		this.animatronicSystem = animatronicSystem;
+		this.animatronicSystem.setup();
+		// console.log(this.animatronicSystem.getAnimatronics()[0])
+		this.animatronicSystem.moveFreddy();
+		this.updateAnimatronics();
+		this.animatronicSystem.moveFreddy();
+		this.updateAnimatronics();
+	}
+
+	public updateAnimatronics() {
+		for (const camera of this.cameras) {
+			camera.clear();
+		}
+		for (const animatronic of this.animatronicSystem.getAnimatronics()) {
+			let animatronicCameraIndex = animatronic.cameraIndex;
+			this.cameras[animatronicCameraIndex].addAnimatronic(animatronic);
+		}
+	}
+
+	public render(ctx: CanvasRenderingContext2D) {
+		this.cameras[this.currentCamera].render(ctx);
 	}
 
 	public setCamera(cameraIndex: number): void {

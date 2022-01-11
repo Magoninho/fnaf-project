@@ -7,10 +7,12 @@ import ImageUtils from "./ImageUtils.js";
 export default class Game {
 	private animatronicSystem: AnimatronicSystem;
 	private cameraSystem: CameraSystem;
+	private ctx: CanvasRenderingContext2D;
 
-	constructor() {
+	constructor(ctx: CanvasRenderingContext2D) {
 		this.cameraSystem = new CameraSystem();
 		this.animatronicSystem = new AnimatronicSystem();
+		this.ctx = ctx;
 	}
 
 	public async start() {
@@ -20,25 +22,33 @@ export default class Game {
 			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera1.png")),
 			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera2.jpg"))
 		]);
-
+		this.cameraSystem.addAnimatronics(this.animatronicSystem);
 		
 		this.cameraSystem.getCameras()[0].name = "Lobby";
 		this.cameraSystem.getCameras()[1].name = "Corredor";
 		this.cameraSystem.getCameras()[2].name = "Pirate Cove";
 		
 		this.setupButtons();
-		this.cameraSystem.setCamera(1);
-		this.cameraSystem.render();
+		this.cameraSystem.setCamera(0);
+		this.cameraSystem.animatronicSystem.moveFreddy();
+		// this.cameraSystem.animatronicSystem.moveFreddy();
+
+
+		// improvised game loop
+		setInterval(() => {
+			this.update();
+			this.render();
+		}, 1000/30);
 	}
 
 	private setupButtons() {
-		// temporario
+		// sistema temporario
 		for (let c = 0; c < this.cameraSystem.getCameras().length; c++) {
 			const btn = Button.createButtonElement("Camera " + c);
 			document.getElementById("buttons").appendChild(btn);
 			btn.addEventListener("click", () => {
 				this.cameraSystem.setCamera(c);
-				this.cameraSystem.render();
+				
 				(document.getElementById("camera-change-audio") as HTMLAudioElement).load();
 				(document.getElementById("camera-change-audio") as HTMLAudioElement).play();
 			});
@@ -50,6 +60,7 @@ export default class Game {
 	}
 
 	private render() {
-
+		this.cameraSystem.render(this.ctx);
+		// this.cameraSystem.animatronicSystem.renderAnimatronic(this.ctx, 0);
 	}
 }

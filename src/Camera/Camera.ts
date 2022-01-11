@@ -1,16 +1,21 @@
 import Animatronic from "../Animatronics/Animatronic.js";
+import * as Constants from "../Constants.js";
 
 export default class Camera {
 	public name: string;
 	public image: HTMLImageElement;
-	public animatronics: Animatronic[];
+	public animatronics: Animatronic[] = []; // animatronics in camera
 
 	constructor(image: HTMLImageElement) {
 		this.image = image;
 	}
 
 	public addAnimatronic(animatronic: Animatronic) {
+		this.animatronics.push(animatronic);
+	}
 
+	public clear() {
+		this.animatronics = [];
 	}
 
 	public hasAnimatronic(name: string): boolean {
@@ -24,13 +29,14 @@ export default class Camera {
 		return false;
 	}
 
-	public render() {
-		const img: HTMLImageElement = document.getElementById("image") as HTMLImageElement;
-		img.src = this.image.src;
+	public render(ctx: CanvasRenderingContext2D) {
 
-		const p: HTMLElement = document.getElementById("camera-name");
-		p.innerText = this.name;
+		ctx.drawImage(this.image, 0, 0, Constants.WIDTH, Constants.HEIGHT);
 
+		// console.log(this.animatronics)
 		// TODO: render animatronics
+		for (const animatronic of this.animatronics) {
+			animatronic.render(ctx);
+		}
 	}
 }
