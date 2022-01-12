@@ -5,17 +5,15 @@ import AnimatronicSprite from "./AnimatronicSprite.js";
 
 export default class AnimatronicSystem {
 	private animatronics: Animatronic[];
+	private cameraLength: number; // the number of cameras, gives more control
 
-	public async setup() {
+	public async setup(cameraLength: number) {
+		this.cameraLength = cameraLength;
 		this.animatronics = [
 			new Animatronic("Freddy"),
 			new Animatronic("Chica"),
 			new Animatronic("Bonnie")
 		];
-
-		// this.animatronics[0].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Freddy/camera0/freddy.png"));
-		// this.animatronics[1].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"));
-		// this.animatronics[2].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"));
 
 		// TODO: make an interface
 
@@ -45,12 +43,19 @@ export default class AnimatronicSystem {
 			139.2,
 			720
 		));
+
+		// debugging
+
+		console.log(this.animatronics);
 	}
 
 	// testing only
 	public moveAnimatronic(animatronicIndex: number) {
 		let animatronicCameraIndex: number = this.animatronics[animatronicIndex].cameraIndex;
-		this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1) % this.animatronics.length;
+		this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1);
+		if (this.animatronics[animatronicIndex].cameraIndex > this.cameraLength - 1) 
+			this.animatronics[animatronicIndex].jumpscare();
+
 	}
 
 	public getAnimatronics() {

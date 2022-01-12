@@ -11,28 +11,29 @@ import AnimatronicSystem from "./Animatronics/AnimatronicSystem.js";
 import Button from "./Button.js";
 import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
-import { BONNIE, CHICA } from "./Constants.js";
+import { CHICA } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
+import Input from "./Input.js";
 export default class Game {
-    constructor(ctx) {
+    constructor(canvas) {
         this.cameraSystem = new CameraSystem();
         this.animatronicSystem = new AnimatronicSystem();
-        this.ctx = ctx;
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext("2d");
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             // setting up cameras with images relative to index.html
-            this.cameraSystem.setup([
+            yield this.cameraSystem.setup([
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera1.png"))
             ]);
-            this.cameraSystem.addAnimatronics(this.animatronicSystem);
+            this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
             this.setupButtons();
             this.cameraSystem.setCamera(0);
             this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-            this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             this.cameraSystem.updateAnimatronics();
             // this.cameraSystem.animatronicSystem.moveFreddy();
             // improvised game loop
@@ -43,22 +44,46 @@ export default class Game {
         });
     }
     setupButtons() {
-        // sistema temporario
+        let buttonInfo = {
+            button0: {
+                innerText: "CAM0",
+                x: 994,
+                y: 350
+            },
+            button1: {
+                innerText: "CAM1",
+                x: 982,
+                y: 400
+            }
+        };
         for (let c = 0; c < this.cameraSystem.getCameras().length; c++) {
-            const btn = Button.createButtonElement("Camera " + c);
-            document.getElementById("buttons").appendChild(btn);
-            btn.addEventListener("click", () => {
-                this.cameraSystem.setCamera(c);
-                document.getElementById("camera-change-audio").load();
-                document.getElementById("camera-change-audio").play();
+            const btnIndex = buttonInfo[`button${c}`];
+            const btn = new Button(btnIndex.innerText, btnIndex.x, btnIndex.y, 45, 30);
+            this.canvas.addEventListener("click", (evt) => {
+                let mousePos = Input.getMousePos(this.canvas, evt);
+                if (btn.isInside(mousePos)) {
+                    btn.click((function () { this.cameraSystem.setCamera(c); }.bind(this)));
+                    document.getElementById("camera-change-audio").load();
+                    document.getElementById("camera-change-audio").play();
+                }
+                else {
+                    console.log(mousePos);
+                }
             });
+            this.cameraSystem.addButton(btn);
         }
+    }
+    getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
     }
     update() {
     }
     render() {
         this.cameraSystem.render(this.ctx);
-        // this.cameraSystem.animatronicSystem.renderAnimatronic(this.ctx, 0);
     }
 }
 //# sourceMappingURL=Game.js.map

@@ -50,7 +50,7 @@ export default class Animatronic {
 		// 		height = 720;
 		// 	}
 		// }
-
+		
 		for (const sprite of this.sprites) {
 			if (sprite.cameraIndex == this.cameraIndex) {
 				ctx.drawImage(sprite.image, sprite.x, sprite.y, sprite.width, sprite.height);
