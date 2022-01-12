@@ -5,7 +5,8 @@ const canvas: HTMLCanvasElement = document.getElementById("game-canvas") as HTML
 const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
 
 document.getElementById('start-btn').addEventListener("click", function() {
-	document.getElementById('start-btn').parentNode.removeChild(document.getElementById('start-btn'));
+	document.getElementById("game-canvas").style.display = "initial";
+	document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
 	(document.getElementById('ambience') as HTMLAudioElement).play();
 	start();
 })

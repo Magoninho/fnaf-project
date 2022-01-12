@@ -11,7 +11,8 @@ import Game from "./Game.js";
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
 document.getElementById('start-btn').addEventListener("click", function () {
-    document.getElementById('start-btn').parentNode.removeChild(document.getElementById('start-btn'));
+    document.getElementById("game-canvas").style.display = "initial";
+    document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
     document.getElementById('ambience').play();
     start();
 });
