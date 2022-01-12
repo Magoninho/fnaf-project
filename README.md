@@ -4,6 +4,9 @@ I think this is a nice little project to put on my portfolio.
 
 ![demo](demo.gif)
 
+
+## [Play it](https://fivenightsatfreddys.netlify.app) (it's not a "game" yet but ok)
+
 ## Todo
 
 - [ ] add more cameras
