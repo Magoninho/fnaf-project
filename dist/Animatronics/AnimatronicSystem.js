@@ -7,8 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { BONNIE, CHICA } from "../Constants.js";
 import ImageUtils from "../ImageUtils.js";
 import Animatronic from "./Animatronic.js";
+import AnimatronicSprite from "./AnimatronicSprite.js";
 export default class AnimatronicSystem {
     setup() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -17,9 +19,13 @@ export default class AnimatronicSystem {
                 new Animatronic("Chica"),
                 new Animatronic("Bonnie")
             ];
-            this.animatronics[0].addSprite(yield ImageUtils.loadImageFromUrl("images/animatronics/Freddy/camera0/freddy.png"));
-            this.animatronics[1].addSprite(yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"));
-            this.animatronics[2].addSprite(yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"));
+            // this.animatronics[0].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Freddy/camera0/freddy.png"));
+            // this.animatronics[1].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"));
+            // this.animatronics[2].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"));
+            // TODO: make an interface
+            this.animatronics[BONNIE].addSprite(new AnimatronicSprite(0, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"), 0, 0, 1280, 720));
+            this.animatronics[BONNIE].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera1/bonnie.png"), 761.6, 0, 192, 720));
+            this.animatronics[CHICA].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"), 414.4, 0, 139.2, 720));
         });
     }
     // testing only

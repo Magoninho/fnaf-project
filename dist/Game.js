@@ -11,7 +11,7 @@ import AnimatronicSystem from "./Animatronics/AnimatronicSystem.js";
 import Button from "./Button.js";
 import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
-import { BONNIE } from "./Constants.js";
+import { BONNIE, CHICA } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
 export default class Game {
     constructor(ctx) {
@@ -31,7 +31,7 @@ export default class Game {
             this.cameraSystem.getCameras()[1].name = "Corredor";
             this.setupButtons();
             this.cameraSystem.setCamera(0);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(0);
+            this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             this.cameraSystem.updateAnimatronics();
             // this.cameraSystem.animatronicSystem.moveFreddy();
