@@ -5,6 +5,7 @@ import CameraSystem from "./Camera/CameraSystem.js";
 import { BONNIE, CHICA } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
 import Input from "./Input.js";
+import popup from "./Utils.js";
 
 export default class Game {
 	private animatronicSystem: AnimatronicSystem;
@@ -40,13 +41,25 @@ export default class Game {
 		
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+		let bonnieInterval = setInterval(() => {
+			this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE)
+			this.cameraSystem.updateAnimatronics();
+			popup("bonnie se move <br><img src='https://i.pinimg.com/474x/c6/76/6d/c6766d4465593500f603ee7941cc34af.jpg'>");
+			clearInterval(bonnieInterval); // TEMP
+		}, 5000);
+
+		let chicaInterval = setInterval(() => {
+			this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA)
+			this.cameraSystem.updateAnimatronics();
+			// popup("*chica se move*");
+			clearInterval(chicaInterval); // TEMP
+		}, 15000);
+
 		this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+		this.cameraSystem.updateAnimatronics();	
 		
-		
-		this.cameraSystem.updateAnimatronics();
 		// this.cameraSystem.animatronicSystem.moveFreddy();
 		
 		

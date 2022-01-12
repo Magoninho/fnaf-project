@@ -11,9 +11,10 @@ import AnimatronicSystem from "./Animatronics/AnimatronicSystem.js";
 import Button from "./Button.js";
 import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
-import { CHICA } from "./Constants.js";
+import { BONNIE, CHICA } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
 import Input from "./Input.js";
+import popup from "./Utils.js";
 export default class Game {
     constructor(canvas) {
         this.cameraSystem = new CameraSystem();
@@ -38,7 +39,18 @@ export default class Game {
             this.cameraSystem.setCamera(0);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+            let bonnieInterval = setInterval(() => {
+                this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+                this.cameraSystem.updateAnimatronics();
+                popup("bonnie se move <br><img src='https://i.pinimg.com/474x/c6/76/6d/c6766d4465593500f603ee7941cc34af.jpg'>");
+                clearInterval(bonnieInterval); // TEMP
+            }, 5000);
+            let chicaInterval = setInterval(() => {
+                this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+                this.cameraSystem.updateAnimatronics();
+                // popup("*chica se move*");
+                clearInterval(chicaInterval); // TEMP
+            }, 15000);
             this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
