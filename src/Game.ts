@@ -12,6 +12,9 @@ export default class Game {
 	private canvas: HTMLCanvasElement;
 	private ctx: CanvasRenderingContext2D;
 
+    public getAnimatronicSystem(): AnimatronicSystem {
+        return this.animatronicSystem;
+    }
 
 	constructor(canvas: HTMLCanvasElement) {
 		this.cameraSystem = new CameraSystem();
@@ -101,4 +104,33 @@ export default class Game {
 	private render() {
 		this.cameraSystem.render(this.ctx);
 	}
+
+
+	public setAnimatronicSystem(animatronicSystem: AnimatronicSystem): void {
+        this.animatronicSystem = animatronicSystem;
+    }
+
+    public getCameraSystem(): CameraSystem {
+        return this.cameraSystem;
+    }
+
+    public setCameraSystem(cameraSystem: CameraSystem): void {
+        this.cameraSystem = cameraSystem;
+    }
+
+    public getCanvas(): HTMLCanvasElement {
+        return this.canvas;
+    }
+
+    public setCanvas(canvas: HTMLCanvasElement): void {
+        this.canvas = canvas;
+    }
+
+    public getCtx(): CanvasRenderingContext2D {
+        return this.ctx;
+    }
+
+    public setCtx(ctx: CanvasRenderingContext2D): void {
+        this.ctx = ctx;
+    }
 }

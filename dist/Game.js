@@ -21,6 +21,9 @@ export default class Game {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
     }
+    getAnimatronicSystem() {
+        return this.animatronicSystem;
+    }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             // setting up cameras with images relative to index.html
@@ -86,6 +89,27 @@ export default class Game {
     }
     render() {
         this.cameraSystem.render(this.ctx);
+    }
+    setAnimatronicSystem(animatronicSystem) {
+        this.animatronicSystem = animatronicSystem;
+    }
+    getCameraSystem() {
+        return this.cameraSystem;
+    }
+    setCameraSystem(cameraSystem) {
+        this.cameraSystem = cameraSystem;
+    }
+    getCanvas() {
+        return this.canvas;
+    }
+    setCanvas(canvas) {
+        this.canvas = canvas;
+    }
+    getCtx() {
+        return this.ctx;
+    }
+    setCtx(ctx) {
+        this.ctx = ctx;
     }
 }
 //# sourceMappingURL=Game.js.map
