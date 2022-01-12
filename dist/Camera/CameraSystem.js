@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import Static from "../Static.js";
 export default class CameraSystem {
     constructor() {
         this.currentCamera = 0; // camera index
@@ -14,6 +15,8 @@ export default class CameraSystem {
     setup(cameras) {
         return __awaiter(this, void 0, void 0, function* () {
             this.cameras = cameras;
+            this.staticAnimation = new Static();
+            this.staticAnimation.setup();
         });
     }
     addAnimatronics(animatronicSystem) {
@@ -32,6 +35,8 @@ export default class CameraSystem {
     }
     render(ctx) {
         this.cameras[this.currentCamera].render(ctx);
+        this.staticAnimation.update();
+        this.staticAnimation.render(ctx);
     }
     setCamera(cameraIndex) {
         this.currentCamera = cameraIndex;

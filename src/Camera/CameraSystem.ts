@@ -1,4 +1,5 @@
 import AnimatronicSystem from "../Animatronics/AnimatronicSystem.js";
+import Static from "../Static.js";
 import Camera from "./Camera.js";
 
 export default class CameraSystem {
@@ -6,8 +7,12 @@ export default class CameraSystem {
 	public animatronicSystem: AnimatronicSystem;
 	public currentCamera: number = 0; // camera index
 
+	public staticAnimation: Static;
+
 	public async setup(cameras: Camera[]) {
 		this.cameras = cameras;
+		this.staticAnimation = new Static();
+		this.staticAnimation.setup();
 	}
 
 	public addAnimatronics(animatronicSystem: AnimatronicSystem) {
@@ -28,6 +33,9 @@ export default class CameraSystem {
 
 	public render(ctx: CanvasRenderingContext2D) {
 		this.cameras[this.currentCamera].render(ctx);
+
+		this.staticAnimation.update();
+		this.staticAnimation.render(ctx);
 	}
 
 	public setCamera(cameraIndex: number): void {

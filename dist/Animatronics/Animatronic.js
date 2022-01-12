@@ -1,10 +1,11 @@
 export default class Animatronic {
     constructor(name) {
+        this.sprites = [];
         this.cameraIndex = 0;
         this.name = name;
     }
     addSprite(sprite) {
-        this.sprite = sprite;
+        this.sprites.push(sprite);
     }
     render(ctx) {
         let x = 0;
@@ -25,7 +26,31 @@ export default class Animatronic {
                 height = 700;
             }
         }
-        ctx.drawImage(this.sprite, x, y, width, height);
+        else if (this.name == "Chica") {
+            if (this.cameraIndex == 1) {
+                x = 414.4;
+                y = 0;
+                width = 139.2;
+                height = 720;
+            }
+            else
+                return;
+        }
+        else if (this.name == "Bonnie") {
+            if (this.cameraIndex == 0) {
+                x = 0;
+                y = 0;
+                width = 1280;
+                height = 720;
+            }
+            else if (this.cameraIndex == 1) {
+                x = 0;
+                y = 0;
+                width = 1280;
+                height = 720;
+            }
+        }
+        // ctx.drawImage(this.sprite, x, y, width, height);
     }
     jumpscare() {
         console.log(`${this.name}: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`);

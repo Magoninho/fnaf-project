@@ -11,9 +11,9 @@ export default class AnimatronicSystem {
 			new Animatronic("Bonnie")
 		];
 
-		this.animatronics[0].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/freddy.png"));
-		this.animatronics[1].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/chica.png"));
-		this.animatronics[2].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/bonnie.png"));
+		this.animatronics[0].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Freddy/camera0/freddy.png"));
+		this.animatronics[1].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"));
+		this.animatronics[2].addSprite(await ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"));
 	}
 
 	// testing only

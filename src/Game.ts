@@ -2,6 +2,7 @@ import AnimatronicSystem from "./Animatronics/AnimatronicSystem.js";
 import Button from "./Button.js";
 import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
+import { BONNIE } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
 
 export default class Game {
@@ -19,19 +20,17 @@ export default class Game {
 		// setting up cameras with images relative to index.html
 		this.cameraSystem.setup([
 			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
-			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera1.png")),
-			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera2.jpg"))
+			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera1.png"))
 		]);
 		this.cameraSystem.addAnimatronics(this.animatronicSystem);
 		
 		this.cameraSystem.getCameras()[0].name = "Lobby";
 		this.cameraSystem.getCameras()[1].name = "Corredor";
-		this.cameraSystem.getCameras()[2].name = "Pirate Cove";
 		
 		this.setupButtons();
 		this.cameraSystem.setCamera(0);
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(0);
-		this.cameraSystem.animatronicSystem.moveAnimatronic(1);
+		this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
 		this.cameraSystem.updateAnimatronics();
 		// this.cameraSystem.animatronicSystem.moveFreddy();
 

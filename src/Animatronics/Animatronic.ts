@@ -1,6 +1,6 @@
 export default class Animatronic {
 	public name: string;
-	public sprite: HTMLImageElement;
+	public sprites: HTMLImageElement[] = [];
 	public cameraIndex: number = 0;
 
 	constructor(name: string) {
@@ -8,7 +8,7 @@ export default class Animatronic {
 	}
 
 	public addSprite(sprite: HTMLImageElement) {
-		this.sprite = sprite;
+		this.sprites.push(sprite);
 	}
 
 	public render(ctx: CanvasRenderingContext2D) {
@@ -28,10 +28,30 @@ export default class Animatronic {
 				width = 400;
 				height = 700;
 			}
+		} else if (this.name == "Chica") {
+			if (this.cameraIndex == 1) {
+				x = 414.4;
+				y = 0;
+				width = 139.2;
+				height = 720;
+			} else return;
+		} else if (this.name == "Bonnie") {
+			if (this.cameraIndex == 0) {
+				x = 0;
+				y = 0;
+				width = 1280;
+				height = 720;
+			} else if (this.cameraIndex == 1) {
+				x = 0;
+				y = 0;
+				width = 1280;
+				height = 720;
+			}
 		}
 
-		ctx.drawImage(this.sprite, x, y, width, height);
+		// ctx.drawImage(this.sprite, x, y, width, height);
 	}
+
 
 	public jumpscare() {
 		console.log(`${this.name}: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`);
