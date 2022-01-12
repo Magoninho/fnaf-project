@@ -31,12 +31,17 @@ export default class Game {
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
                 new Camera(yield ImageUtils.loadImageFromUrl("images/cameras/camera1.png"))
             ]);
-            this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
+            yield this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
             this.setupButtons();
             this.cameraSystem.setCamera(0);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             this.cameraSystem.updateAnimatronics();
             // this.cameraSystem.animatronicSystem.moveFreddy();
             // improvised game loop

@@ -30,7 +30,7 @@ export default class Game {
 			new Camera(await ImageUtils.loadImageFromUrl("images/cameras/camera1.png"))
 		]);
 
-		this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
+		await this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
 		
 		this.cameraSystem.getCameras()[0].name = "Lobby";
 		this.cameraSystem.getCameras()[1].name = "Corredor";
@@ -38,7 +38,12 @@ export default class Game {
 		this.setupButtons();
 		this.cameraSystem.setCamera(0);
 		
+		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
 		this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		
 		
 		this.cameraSystem.updateAnimatronics();

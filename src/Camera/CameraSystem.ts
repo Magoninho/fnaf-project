@@ -25,9 +25,9 @@ export default class CameraSystem {
 		this.playback = await ImageUtils.loadImageFromUrl("images/other/playback.png");
 	}
 
-	public addAnimatronicSystem(animatronicSystem: AnimatronicSystem) {
+	public async addAnimatronicSystem(animatronicSystem: AnimatronicSystem) {
 		this.animatronicSystem = animatronicSystem;
-		this.animatronicSystem.setup(this.cameras.length);
+		await this.animatronicSystem.setup(this.cameras.length);
 		// console.log(this.animatronicSystem.getAnimatronics()[0])
 	}
 
@@ -46,16 +46,22 @@ export default class CameraSystem {
 	}
 
 	public render(ctx: CanvasRenderingContext2D) {
+		for (const animatronic of this.animatronicSystem.getAnimatronics()) {
+			if (animatronic.jumpscareObj.activated) {
+				animatronic.render(ctx);
+				return;
+			}
+		}
 		this.cameras[this.currentCamera].render(ctx);
 		this.map.render(ctx);
 		ctx.drawImage(this.playback, -50, -50, Constants.WIDTH+70, Constants.HEIGHT+70)
 
+		this.staticAnimation.update();
+		this.staticAnimation.render(ctx);
+
 		for (const button of this.buttons) {
 			button.render(ctx);
 		}
-
-		this.staticAnimation.update();
-		this.staticAnimation.render(ctx);
 	}
 
 	public setCamera(cameraIndex: number): void {

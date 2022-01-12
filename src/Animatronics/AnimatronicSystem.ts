@@ -44,6 +44,11 @@ export default class AnimatronicSystem {
 			720
 		));
 
+
+		// jumpscares
+		this.animatronics[BONNIE].addJumpscare(await ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/jumpscare.png"));
+		this.animatronics[CHICA].addJumpscare(await ImageUtils.loadImageFromUrl("images/animatronics/Chica/jumpscare.png"));
+
 		// debugging
 
 		console.log(this.animatronics);

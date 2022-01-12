@@ -27,9 +27,11 @@ export default class CameraSystem {
         });
     }
     addAnimatronicSystem(animatronicSystem) {
-        this.animatronicSystem = animatronicSystem;
-        this.animatronicSystem.setup(this.cameras.length);
-        // console.log(this.animatronicSystem.getAnimatronics()[0])
+        return __awaiter(this, void 0, void 0, function* () {
+            this.animatronicSystem = animatronicSystem;
+            yield this.animatronicSystem.setup(this.cameras.length);
+            // console.log(this.animatronicSystem.getAnimatronics()[0])
+        });
     }
     updateAnimatronics() {
         for (const camera of this.cameras) {
@@ -44,14 +46,20 @@ export default class CameraSystem {
         this.buttons.push(button);
     }
     render(ctx) {
+        for (const animatronic of this.animatronicSystem.getAnimatronics()) {
+            if (animatronic.jumpscareObj.activated) {
+                animatronic.render(ctx);
+                return;
+            }
+        }
         this.cameras[this.currentCamera].render(ctx);
         this.map.render(ctx);
         ctx.drawImage(this.playback, -50, -50, Constants.WIDTH + 70, Constants.HEIGHT + 70);
+        this.staticAnimation.update();
+        this.staticAnimation.render(ctx);
         for (const button of this.buttons) {
             button.render(ctx);
         }
-        this.staticAnimation.update();
-        this.staticAnimation.render(ctx);
     }
     setCamera(cameraIndex) {
         this.currentCamera = cameraIndex;

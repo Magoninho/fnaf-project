@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="style/style.css">
 	<audio src="audio/camera_change.mp4" id="camera-change-audio"></audio>
 	<audio src="audio/ambience.mp4" id="ambience" loop></audio>
+	<audio src="audio/jumpscare.mp3" id="jumpscare-audio"></audio>
 
 </head>
 
@@ -23,6 +24,10 @@
 		<button style="font-size: xx-large;" id="start-btn">Start</button>
 	</div>
 	<script type="module" src="dist/Main.js" defer></script>
+	<script>
+		var audio = document.getElementById("jumpscare-audio");
+		audio.volume = 0.15;
+	  </script>
 </body>
 
 </html>

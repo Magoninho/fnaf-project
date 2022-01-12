@@ -8,18 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import Game from "./Game.js";
+const DEBUG = false;
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
 document.getElementById('start-btn').addEventListener("click", function () {
-    document.getElementById("game-canvas").style.display = "initial";
-    document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
-    document.getElementById('ambience').play();
     start();
 });
 function start() {
     return __awaiter(this, void 0, void 0, function* () {
+        document.getElementById("game-canvas").style.display = "initial";
+        document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
+        if (!DEBUG) {
+            document.getElementById('ambience').play();
+        }
         let game = new Game(canvas);
         yield game.start();
     });
+}
+if (DEBUG) {
+    start();
 }
 //# sourceMappingURL=Main.js.map

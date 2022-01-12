@@ -16,7 +16,7 @@ export default class Static {
 	public render(ctx: CanvasRenderingContext2D) {
 		ctx.globalAlpha = 0.25;
 
-		ctx.drawImage(this.texture, 0, this.row * 780, Constants.WIDTH, Constants.HEIGHT, 0, 0, Constants.WIDTH, Constants.HEIGHT);
+		ctx.drawImage(this.texture, 0, this.row * 720, Constants.WIDTH, Constants.HEIGHT, 0, 0, Constants.WIDTH, Constants.HEIGHT);
 
 		ctx.globalAlpha = 1.0;
 	}

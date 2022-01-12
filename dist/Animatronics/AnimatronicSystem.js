@@ -24,6 +24,9 @@ export default class AnimatronicSystem {
             this.animatronics[BONNIE].addSprite(new AnimatronicSprite(0, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"), 0, 0, 1280, 720));
             this.animatronics[BONNIE].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera1/bonnie.png"), 761.6, 0, 192, 720));
             this.animatronics[CHICA].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"), 414.4, 0, 139.2, 720));
+            // jumpscares
+            this.animatronics[BONNIE].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/jumpscare.png"));
+            this.animatronics[CHICA].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/jumpscare.png"));
             // debugging
             console.log(this.animatronics);
         });
