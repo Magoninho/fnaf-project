@@ -16,4 +16,5 @@ I think this is a nice little project to put on my portfolio.
 
 ---
 
-All rigths belong to Scott Cawthon, creator of Five Nights at Freddy's
+All rigths belong to Scott Cawthon, creator of Five Nights at Freddy's  
+(buy the original game, this one is nothing compared to the original one)
