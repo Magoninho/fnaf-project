@@ -63,10 +63,12 @@ export default class Game {
                 let mousePos = Input.getMousePos(this.canvas, evt);
                 if (btn.isInside(mousePos)) {
                     btn.click((function () { this.cameraSystem.setCamera(c); }.bind(this)));
+                    btn.setClicked(true);
                     document.getElementById("camera-change-audio").load();
                     document.getElementById("camera-change-audio").play();
                 }
                 else {
+                    btn.setClicked(false);
                     console.log(mousePos);
                 }
             });

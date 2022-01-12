@@ -35,13 +35,17 @@ export default class Button {
 		event();
 	}
 
+	public setClicked(clicked: boolean) {
+		this.clicked = clicked;
+	}
+
 
 	public update() {
 		
 	}
 
 	public render(ctx: CanvasRenderingContext2D) {
-		ctx.fillStyle = "grey";
+		ctx.fillStyle = this.clicked? "green" : "grey"
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 		ctx.font = '16px monospace';
 		ctx.fillStyle = "white";

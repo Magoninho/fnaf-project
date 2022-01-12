@@ -67,13 +67,16 @@ export default class Game {
 		for (let c = 0; c < this.cameraSystem.getCameras().length; c++) {
 			const btnIndex = buttonInfo[`button${c}`];
 			const btn = new Button(btnIndex.innerText, btnIndex.x, btnIndex.y, 45, 30);
+			
 			this.canvas.addEventListener("click", (evt) => {
 				let mousePos = Input.getMousePos(this.canvas, evt);
 				if (btn.isInside(mousePos)) {
 					btn.click((function() {this.cameraSystem.setCamera(c)}.bind(this)));
+					btn.setClicked(true);
 					(document.getElementById("camera-change-audio") as HTMLAudioElement).load();
 					(document.getElementById("camera-change-audio") as HTMLAudioElement).play();
 				} else {
+					btn.setClicked(false);
 					console.log(mousePos);
 				}
 			});

@@ -19,10 +19,13 @@ export default class Button {
     click(event) {
         event();
     }
+    setClicked(clicked) {
+        this.clicked = clicked;
+    }
     update() {
     }
     render(ctx) {
-        ctx.fillStyle = "grey";
+        ctx.fillStyle = this.clicked ? "green" : "grey";
         ctx.fillRect(this.x, this.y, this.width, this.height);
         ctx.font = '16px monospace';
         ctx.fillStyle = "white";
