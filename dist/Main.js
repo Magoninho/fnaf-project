@@ -10,8 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import Game from "./Game.js";
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
-(() => __awaiter(void 0, void 0, void 0, function* () {
-    let game = new Game(canvas);
-    yield game.start();
-}))();
+document.getElementById('start-btn').addEventListener("click", function () {
+    document.getElementById('start-btn').parentNode.removeChild(document.getElementById('start-btn'));
+    document.getElementById('ambience').play();
+    start();
+});
+function start() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let game = new Game(canvas);
+        yield game.start();
+    });
+}
 //# sourceMappingURL=Main.js.map

@@ -7,7 +7,8 @@
 	<title>FNAF</title>
 	<link rel="stylesheet" href="style/style.css">
 	<audio src="audio/camera_change.mp4" id="camera-change-audio"></audio>
-	<audio src="audio/ambience.mp4" id="ambience" autoplay></audio>
+	<audio src="audio/ambience.mp4" id="ambience" loop></audio>
+
 </head>
 <body>
 	<h1 id="camera-name"></h1>
@@ -16,7 +17,7 @@
 	<canvas id="game-canvas" width="1280" height="720"></canvas>
 	
 	<div id="buttons">
-		
+		<button style="font-size: xx-large;" id="start-btn">Start</button>
 	</div>
 	<script type="module" src="dist/Main.js" defer></script>
 </body>
