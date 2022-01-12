@@ -44,6 +44,7 @@ export default class Game {
 		let bonnieInterval = setInterval(() => {
 			this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE)
 			this.cameraSystem.updateAnimatronics();
+			(document.getElementById("hallway-audio") as HTMLAudioElement).play();
 			popup("bonnie se move <br><img src='https://i.pinimg.com/474x/c6/76/6d/c6766d4465593500f603ee7941cc34af.jpg'>");
 			clearInterval(bonnieInterval); // TEMP
 		}, 5000);
