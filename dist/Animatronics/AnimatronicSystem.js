@@ -23,8 +23,9 @@ export default class AnimatronicSystem {
         });
     }
     // testing only
-    moveFreddy() {
-        this.animatronics[0].cameraIndex++;
+    moveAnimatronic(animatronicIndex) {
+        let animatronicCameraIndex = this.animatronics[animatronicIndex].cameraIndex;
+        this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1) % this.animatronics.length;
     }
     getAnimatronics() {
         return this.animatronics;

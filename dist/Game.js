@@ -32,7 +32,9 @@ export default class Game {
             this.cameraSystem.getCameras()[2].name = "Pirate Cove";
             this.setupButtons();
             this.cameraSystem.setCamera(0);
-            this.cameraSystem.animatronicSystem.moveFreddy();
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(0);
+            this.cameraSystem.animatronicSystem.moveAnimatronic(1);
+            this.cameraSystem.updateAnimatronics();
             // this.cameraSystem.animatronicSystem.moveFreddy();
             // improvised game loop
             setInterval(() => {

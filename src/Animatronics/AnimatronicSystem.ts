@@ -17,15 +17,16 @@ export default class AnimatronicSystem {
 	}
 
 	// testing only
-	public moveFreddy() {
-		this.animatronics[0].cameraIndex++;
+	public moveAnimatronic(animatronicIndex: number) {
+		let animatronicCameraIndex: number = this.animatronics[animatronicIndex].cameraIndex;
+		this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1) % this.animatronics.length;
 	}
 
 	public getAnimatronics() {
 		return this.animatronics;
 	}
 
-	
+
 	public renderAnimatronic(ctx: CanvasRenderingContext2D, animatronicIndex: number) {
 		this.animatronics[animatronicIndex].render(ctx);
 	}

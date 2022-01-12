@@ -14,10 +14,6 @@ export default class CameraSystem {
 		this.animatronicSystem = animatronicSystem;
 		this.animatronicSystem.setup();
 		// console.log(this.animatronicSystem.getAnimatronics()[0])
-		this.animatronicSystem.moveFreddy();
-		this.updateAnimatronics();
-		this.animatronicSystem.moveFreddy();
-		this.updateAnimatronics();
 	}
 
 	public updateAnimatronics() {
