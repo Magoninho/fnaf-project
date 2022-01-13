@@ -26,6 +26,11 @@ export default class Game {
 	}
 
 	public async start() {
+
+		let loading = document.createElement("h1");
+		loading.innerHTML = "loading...";
+		document.body.appendChild(loading);
+
 		// setting up cameras with images relative to index.html
 		await this.cameraSystem.setup([
 			new Camera(0, await ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
@@ -34,6 +39,8 @@ export default class Game {
 			new Camera(3, await ImageUtils.loadImageFromUrl("images/cameras/camera3.png")),
 
 		]);
+
+		document.body.removeChild(loading);
 
 		await this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
 

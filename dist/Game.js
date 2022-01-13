@@ -25,6 +25,9 @@ export default class Game {
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
+            let loading = document.createElement("h1");
+            loading.innerHTML = "loading...";
+            document.body.appendChild(loading);
             // setting up cameras with images relative to index.html
             yield this.cameraSystem.setup([
                 new Camera(0, yield ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
@@ -32,6 +35,7 @@ export default class Game {
                 new Camera(2, yield ImageUtils.loadImageFromUrl("images/cameras/camera2.png")),
                 new Camera(3, yield ImageUtils.loadImageFromUrl("images/cameras/camera3.png")),
             ]);
+            document.body.removeChild(loading);
             yield this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
