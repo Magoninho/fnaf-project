@@ -3,18 +3,19 @@ export default class Animatronic {
     constructor(name) {
         this.sprites = [];
         this.cameraIndex = 0;
+        this.state = 0;
         this.name = name;
-        this.jumpscareObj = new Jumpscare();
+        this.jumpscare = new Jumpscare();
     }
     addSprite(sprite) {
         this.sprites.push(sprite);
     }
     addJumpscare(image) {
         console.log(image);
-        this.jumpscareObj.setup(image);
+        this.jumpscare.setup(image);
     }
     render(ctx) {
-        if (!this.jumpscareObj.activated) {
+        if (!this.jumpscare.activated) {
             for (const sprite of this.sprites) {
                 if (sprite.cameraIndex == this.cameraIndex) {
                     ctx.drawImage(sprite.image, sprite.x, sprite.y, sprite.width, sprite.height);
@@ -22,11 +23,11 @@ export default class Animatronic {
             }
         }
         else {
-            this.jumpscareObj.render(ctx);
+            this.jumpscare.render(ctx);
         }
     }
-    jumpscare() {
-        this.jumpscareObj.activate();
+    attack() {
+        this.jumpscare.activate();
     }
 }
 //# sourceMappingURL=Animatronic.js.map

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { BONNIE, CHICA } from "../Constants.js";
+import { BONNIE, CHICA, FREDDY } from "../Constants.js";
 import ImageUtils from "../ImageUtils.js";
 import Animatronic from "./Animatronic.js";
 import AnimatronicSprite from "./AnimatronicSprite.js";
@@ -25,6 +25,7 @@ export default class AnimatronicSystem {
             this.animatronics[BONNIE].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera1/bonnie.png"), 761.6, 0, 192, 720));
             this.animatronics[CHICA].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"), 414.4, 0, 139.2, 720));
             // jumpscares
+            this.animatronics[FREDDY].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Freddy/jumpscare.png"));
             this.animatronics[BONNIE].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/jumpscare.png"));
             this.animatronics[CHICA].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/jumpscare.png"));
             // debugging
@@ -36,10 +37,13 @@ export default class AnimatronicSystem {
         let animatronicCameraIndex = this.animatronics[animatronicIndex].cameraIndex;
         this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1);
         if (this.animatronics[animatronicIndex].cameraIndex > this.cameraLength - 1)
-            this.animatronics[animatronicIndex].jumpscare();
+            this.animatronics[animatronicIndex].attack();
     }
     getAnimatronics() {
         return this.animatronics;
+    }
+    getAnimatronic(animatronicIndex) {
+        return this.animatronics[animatronicIndex];
     }
     renderAnimatronic(ctx, animatronicIndex) {
         this.animatronics[animatronicIndex].render(ctx);

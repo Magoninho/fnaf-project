@@ -46,6 +46,7 @@ export default class AnimatronicSystem {
 
 
 		// jumpscares
+		this.animatronics[FREDDY].addJumpscare(await ImageUtils.loadImageFromUrl("images/animatronics/Freddy/jumpscare.png"));
 		this.animatronics[BONNIE].addJumpscare(await ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/jumpscare.png"));
 		this.animatronics[CHICA].addJumpscare(await ImageUtils.loadImageFromUrl("images/animatronics/Chica/jumpscare.png"));
 
@@ -59,12 +60,16 @@ export default class AnimatronicSystem {
 		let animatronicCameraIndex: number = this.animatronics[animatronicIndex].cameraIndex;
 		this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1);
 		if (this.animatronics[animatronicIndex].cameraIndex > this.cameraLength - 1) 
-			this.animatronics[animatronicIndex].jumpscare();
+			this.animatronics[animatronicIndex].attack();
 
 	}
 
 	public getAnimatronics() {
 		return this.animatronics;
+	}
+
+	public getAnimatronic(animatronicIndex) {
+		return this.animatronics[animatronicIndex];
 	}
 
 

@@ -7,10 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import Button from "../Button.js";
 import ImageUtils from "../ImageUtils.js";
 import Map from "../Map.js";
 import Static from "../Static.js";
 import * as Constants from "../Constants.js";
+import Input from "../Input.js";
 export default class CameraSystem {
     constructor() {
         this.currentCamera = 0; // camera index
@@ -33,21 +35,65 @@ export default class CameraSystem {
             // console.log(this.animatronicSystem.getAnimatronics()[0])
         });
     }
-    updateAnimatronics() {
+    updateCameras() {
         for (const camera of this.cameras) {
             camera.clear();
+            camera.udpate();
         }
         for (const animatronic of this.animatronicSystem.getAnimatronics()) {
             let animatronicCameraIndex = animatronic.cameraIndex % this.cameras.length;
             this.cameras[animatronicCameraIndex].addAnimatronic(animatronic);
+            this.cameras[animatronicCameraIndex].udpate();
         }
     }
-    addButton(button) {
-        this.buttons.push(button);
+    setupButtons(canvas) {
+        let buttonInfo = {
+            button0: {
+                innerText: "CAM0",
+                x: 989,
+                y: 306
+            },
+            button1: {
+                innerText: "CAM1",
+                x: 980,
+                y: 360
+            },
+            button2: {
+                innerText: "CAM2",
+                x: 870,
+                y: 413
+            },
+            button3: {
+                innerText: "CAM3",
+                x: 1216,
+                y: 400
+            }
+        };
+        // FIXME: Store first, then render
+        for (let c = 0; c < this.getCameras().length; c++) {
+            const btnIndex = buttonInfo[`button${c}`];
+            const btn = new Button(btnIndex.innerText, btnIndex.x, btnIndex.y, 50, 35);
+            if (this.currentCamera == c)
+                btn.setClicked(true);
+            canvas.addEventListener("click", (evt) => {
+                let mousePos = Input.getMousePos(canvas, evt);
+                if (btn.isInside(mousePos)) {
+                    btn.click((function () { this.setCamera(c); }.bind(this)));
+                    btn.setClicked(true);
+                    document.getElementById("camera-change-audio").load();
+                    document.getElementById("camera-change-audio").play();
+                }
+                else {
+                    btn.setClicked(false);
+                    console.log(mousePos);
+                }
+            });
+            this.buttons.push(btn);
+        }
     }
     render(ctx) {
         for (const animatronic of this.animatronicSystem.getAnimatronics()) {
-            if (animatronic.jumpscareObj.activated) {
+            if (animatronic.jumpscare.activated) {
                 animatronic.render(ctx);
                 return;
             }

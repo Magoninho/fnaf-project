@@ -5,12 +5,15 @@ export default class Animatronic {
 	public name: string;
 	public sprites: AnimatronicSprite[] = [];
 	public cameraIndex: number = 0;
+	public state: number = 0;
 
-	public jumpscareObj: Jumpscare;
+	// TODO: AI (freddy, chica, bonnie)
+
+	public jumpscare: Jumpscare;
 
 	constructor(name: string) {
 		this.name = name;
-		this.jumpscareObj = new Jumpscare();
+		this.jumpscare = new Jumpscare();
 
 	}
 
@@ -18,27 +21,28 @@ export default class Animatronic {
 		this.sprites.push(sprite);
 	}
 
+
 	public addJumpscare(image: HTMLImageElement) {
 		console.log(image);
-		this.jumpscareObj.setup(image);
+		this.jumpscare.setup(image);
 	}
 
 	public render(ctx: CanvasRenderingContext2D) {
 
-		if (!this.jumpscareObj.activated) {
+		if (!this.jumpscare.activated) {
 			for (const sprite of this.sprites) {
 				if (sprite.cameraIndex == this.cameraIndex) {
 					ctx.drawImage(sprite.image, sprite.x, sprite.y, sprite.width, sprite.height);
 				}
 			}
 		} else {
-			this.jumpscareObj.render(ctx);
+			this.jumpscare.render(ctx);
 		}
 	}
 
 
-	public jumpscare() {
-		this.jumpscareObj.activate();
+	public attack() {
+		this.jumpscare.activate();
 		
 	}
 }

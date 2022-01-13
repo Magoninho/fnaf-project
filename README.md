@@ -9,7 +9,7 @@ I think this is a nice little project to put on my portfolio.
 
 ## Todo
 
-- [ ] add more cameras
+- [x] add more cameras
 - [ ] add doors, lights, stuff that is not camera related lol
 - [ ] add freddy movement
 - [ ] document the code (looks awful)
