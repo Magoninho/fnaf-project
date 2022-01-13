@@ -1,4 +1,4 @@
-import Jumpscare from "./jumpscares/Jumpscare.js";
+import Jumpscare from "./Jumpscare.js";
 export default class Animatronic {
     constructor(name) {
         this.sprites = [];

@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import AnimatronicSystem from "./Animatronics/AnimatronicSystem.js";
 import Camera from "./Camera/Camera.js";
 import CameraSystem from "./Camera/CameraSystem.js";
-import { BONNIE, CHICA } from "./Constants.js";
+import { BONNIE, CHICA, FREDDY } from "./Constants.js";
 import ImageUtils from "./ImageUtils.js";
 import * as Constants from "./Constants.js";
 export default class Game {
@@ -37,10 +37,35 @@ export default class Game {
             this.cameraSystem.getCameras()[1].name = "Corredor";
             this.cameraSystem.setupButtons(this.canvas);
             this.cameraSystem.setCamera(0);
-            this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-            this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+            // TEMP
+            let btnFreddy = document.createElement("button");
+            btnFreddy.innerHTML = "move freddy";
+            btnFreddy.addEventListener("click", () => {
+                this.cameraSystem.animatronicSystem.moveAnimatronic(FREDDY);
+                this.cameraSystem.updateCameras();
+                this.debugText(`${this.animatronicSystem.getAnimatronic(FREDDY).name} -> CAMERA ${this.animatronicSystem.getAnimatronic(FREDDY).cameraIndex}`);
+            });
+            document.body.appendChild(btnFreddy);
+            let btnBonnie = document.createElement("button");
+            btnBonnie.innerHTML = "move Bonnie";
+            btnBonnie.addEventListener("click", () => {
+                this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+                this.cameraSystem.updateCameras();
+                this.debugText(`${this.animatronicSystem.getAnimatronic(BONNIE).name} -> CAMERA ${this.animatronicSystem.getAnimatronic(BONNIE).cameraIndex}`);
+            });
+            document.body.appendChild(btnBonnie);
+            let btnChica = document.createElement("button");
+            btnChica.innerHTML = "move Chica";
+            btnChica.addEventListener("click", () => {
+                this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+                this.cameraSystem.updateCameras();
+                this.debugText(`${this.animatronicSystem.getAnimatronic(CHICA).name} -> CAMERA ${this.animatronicSystem.getAnimatronic(CHICA).cameraIndex}`);
+            });
+            document.body.appendChild(btnChica);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(FREDDY);
-            this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
+            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
             // let bonnieInterval = setInterval(() => {
             // 	this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE)
@@ -67,37 +92,11 @@ export default class Game {
             }, 1000 / 30);
         });
     }
-    // private setupButtons() {
-    // 	let buttonInfo = {
-    // 		button0: {
-    // 			innerText: "CAM0",
-    // 			x: 994,
-    // 			y: 350
-    // 		},
-    // 		button1: {
-    // 			innerText: "CAM1",
-    // 			x: 982,
-    // 			y: 400
-    // 		}
-    // 	};
-    // 	for (let c = 0; c < this.cameraSystem.getCameras().length; c++) {
-    // 		const btnIndex = buttonInfo[`button${c}`];
-    // 		const btn = new Button(btnIndex.innerText, btnIndex.x, btnIndex.y, 45, 30);
-    // 		this.canvas.addEventListener("click", (evt) => {
-    // 			let mousePos = Input.getMousePos(this.canvas, evt);
-    // 			if (btn.isInside(mousePos)) {
-    // 				btn.click((function() {this.cameraSystem.setCamera(c)}.bind(this)));
-    // 				btn.setClicked(true);
-    // 				(document.getElementById("camera-change-audio") as HTMLAudioElement).load();
-    // 				(document.getElementById("camera-change-audio") as HTMLAudioElement).play();
-    // 			} else {
-    // 				btn.setClicked(false);
-    // 				console.log(mousePos);
-    // 			}
-    // 		});
-    // 		this.cameraSystem.addButton(btn);
-    // 	}
-    // }
+    debugText(text) {
+        let p = document.createElement("p");
+        p.innerText = text;
+        document.body.appendChild(p);
+    }
     getMousePos(canvas, evt) {
         var rect = canvas.getBoundingClientRect();
         return {

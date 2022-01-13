@@ -32,7 +32,6 @@ export default class AnimatronicSystem {
             console.log(this.animatronics);
         });
     }
-    // testing only
     moveAnimatronic(animatronicIndex) {
         let animatronicCameraIndex = this.animatronics[animatronicIndex].cameraIndex;
         this.animatronics[animatronicIndex].cameraIndex = (animatronicCameraIndex + 1);

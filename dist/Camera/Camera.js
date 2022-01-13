@@ -47,7 +47,9 @@ export default class Camera {
                     !this.hasAnimatronic("Chica")) {
                     this.spriteRow = 4;
                 }
-                else {
+                else if (this.hasAnimatronic("Freddy") &&
+                    this.hasAnimatronic("Bonnie") &&
+                    this.hasAnimatronic("Chica")) {
                     let randomState = Math.floor(Math.random() * 2);
                     this.spriteRow = randomState;
                 }
@@ -77,31 +79,24 @@ export default class Camera {
                 break;
             // IF CAMERA 2
             case 2:
-                if (!this.hasAnimatronic("Freddy") &&
-                    !this.hasAnimatronic("Bonnie") &&
-                    !this.hasAnimatronic("Chica")) {
+                if (!this.hasAnimatronic("Bonnie")) {
                     this.spriteRow = 0;
                 }
-                else if (!this.hasAnimatronic("Freddy") &&
-                    this.hasAnimatronic("Bonnie") &&
-                    !this.hasAnimatronic("Chica")) {
+                else if (this.hasAnimatronic("Bonnie")) {
                     this.spriteRow = 3;
                 }
                 break;
             // IF CAMERA 3
             case 3:
                 if (!this.hasAnimatronic("Freddy") &&
-                    !this.hasAnimatronic("Bonnie") &&
                     !this.hasAnimatronic("Chica")) {
                     this.spriteRow = 0;
                 }
                 else if (!this.hasAnimatronic("Freddy") &&
-                    !this.hasAnimatronic("Bonnie") &&
                     this.hasAnimatronic("Chica")) {
                     this.spriteRow = 2;
                 }
                 else if (this.hasAnimatronic("Freddy") &&
-                    !this.hasAnimatronic("Bonnie") &&
                     !this.hasAnimatronic("Chica")) {
                     this.spriteRow = 3;
                 }

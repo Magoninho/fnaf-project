@@ -1,5 +1,5 @@
-import * as Constants from "../../Constants.js";
-import ImageUtils from "../../ImageUtils.js";
+import * as Constants from "../Constants.js";
+import ImageUtils from "../ImageUtils.js";
 
 export default class Jumpscare {
 	private image: HTMLImageElement;

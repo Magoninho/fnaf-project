@@ -1,5 +1,5 @@
 import AnimatronicSprite from "./AnimatronicSprite.js";
-import Jumpscare from "./jumpscares/Jumpscare.js";
+import Jumpscare from "./Jumpscare.js";
 
 export default class Animatronic {
 	public name: string;

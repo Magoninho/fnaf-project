@@ -1,6 +1,6 @@
 import Game from "./Game.js";
 import * as Constants from "./Constants.js";
-const DEBUG = true;
+const DEBUG = false;
 
 const canvas: HTMLCanvasElement = document.getElementById("game-canvas") as HTMLCanvasElement;
 const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
