@@ -18,9 +18,6 @@ function start() {
     return __awaiter(this, void 0, void 0, function* () {
         document.getElementById("game-canvas").style.display = "initial";
         document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
-        if (!DEBUG) {
-            document.getElementById('ambience').play();
-        }
         let game = new Game(canvas);
         yield game.start();
     });

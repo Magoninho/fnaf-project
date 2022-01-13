@@ -40,6 +40,8 @@ export default class Game {
 
 		]);
 
+		(document.getElementById('ambience') as HTMLAudioElement).play();
+
 		document.body.removeChild(loading);
 
 		await this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);

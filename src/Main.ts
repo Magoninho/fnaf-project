@@ -13,7 +13,6 @@ document.getElementById('start-btn').addEventListener("click", function() {
 async function start() {
 	document.getElementById("game-canvas").style.display = "initial";
 	document.getElementById('start').parentNode.removeChild(document.getElementById('start'));
-	if (!DEBUG) { (document.getElementById('ambience') as HTMLAudioElement).play(); }
 	let game = new Game(canvas);
 	await game.start();
 }

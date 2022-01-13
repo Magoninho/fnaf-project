@@ -35,6 +35,7 @@ export default class Game {
                 new Camera(2, yield ImageUtils.loadImageFromUrl("images/cameras/camera2.png")),
                 new Camera(3, yield ImageUtils.loadImageFromUrl("images/cameras/camera3.png")),
             ]);
+            document.getElementById('ambience').play();
             document.body.removeChild(loading);
             yield this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
