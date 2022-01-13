@@ -40,9 +40,7 @@ export default class Game {
 
 		]);
 
-		(document.getElementById('ambience') as HTMLAudioElement).play();
-
-		document.body.removeChild(loading);
+		
 
 		await this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
 
@@ -107,6 +105,10 @@ export default class Game {
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		this.cameraSystem.updateCameras();
+
+		(document.getElementById('ambience') as HTMLAudioElement).play();
+
+		document.body.removeChild(loading);
 
 		// this.cameraSystem.animatronicSystem.moveFreddy();
 

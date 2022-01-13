@@ -35,8 +35,6 @@ export default class Game {
                 new Camera(2, yield ImageUtils.loadImageFromUrl("images/cameras/camera2.png")),
                 new Camera(3, yield ImageUtils.loadImageFromUrl("images/cameras/camera3.png")),
             ]);
-            document.getElementById('ambience').play();
-            document.body.removeChild(loading);
             yield this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
@@ -89,6 +87,8 @@ export default class Game {
             // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             this.cameraSystem.updateCameras();
+            document.getElementById('ambience').play();
+            document.body.removeChild(loading);
             // this.cameraSystem.animatronicSystem.moveFreddy();
             // improvised game loop
             setInterval(() => {
