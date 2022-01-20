@@ -8,12 +8,12 @@ export default class AnimatronicSprite {
 	public width: number;
 	public height: number;
 
-	constructor(cameraIndex: number, image: HTMLImageElement, x: number, y: number, width: number, height: number) {
-		this.cameraIndex = cameraIndex;
-		this.image = image;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+	constructor(animatronicSpriteInfo: AnimatronicSpriteInfo) {
+		this.cameraIndex = animatronicSpriteInfo.cameraIndex;
+		this.image = animatronicSpriteInfo.image;
+		this.x = animatronicSpriteInfo.x;
+		this.y = animatronicSpriteInfo.y;
+		this.width = animatronicSpriteInfo.width;
+		this.height = animatronicSpriteInfo.height;
 	}
 }

@@ -10,7 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { BONNIE, CHICA, FREDDY } from "../Constants.js";
 import ImageUtils from "../ImageUtils.js";
 import Animatronic from "./Animatronic.js";
-import AnimatronicSprite from "./AnimatronicSprite.js";
 export default class AnimatronicSystem {
     setup(cameraLength) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -20,10 +19,30 @@ export default class AnimatronicSystem {
                 new Animatronic("Chica"),
                 new Animatronic("Bonnie")
             ];
-            // TODO: make an interface
-            this.animatronics[BONNIE].addSprite(new AnimatronicSprite(0, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"), 0, 0, 1280, 720));
-            this.animatronics[BONNIE].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera1/bonnie.png"), 761.6, 0, 192, 720));
-            this.animatronics[CHICA].addSprite(new AnimatronicSprite(1, yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"), 414.4, 0, 139.2, 720));
+            this.animatronics[BONNIE].addSprite({
+                cameraIndex: 0,
+                image: yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera0/bonnie.png"),
+                x: 0,
+                y: 0,
+                width: 1280,
+                height: 720
+            });
+            this.animatronics[BONNIE].addSprite({
+                cameraIndex: 1,
+                image: yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/camera1/bonnie.png"),
+                x: 761.6,
+                y: 0,
+                width: 192,
+                height: 720
+            });
+            this.animatronics[CHICA].addSprite({
+                cameraIndex: 1,
+                image: yield ImageUtils.loadImageFromUrl("images/animatronics/Chica/camera1/chica.png"),
+                x: 414.4,
+                y: 0,
+                width: 139.2,
+                height: 720
+            });
             // jumpscares
             this.animatronics[FREDDY].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Freddy/jumpscare.png"));
             this.animatronics[BONNIE].addJumpscare(yield ImageUtils.loadImageFromUrl("images/animatronics/Bonnie/jumpscare.png"));

@@ -1,3 +1,4 @@
+import AnimatronicSprite from "./AnimatronicSprite.js";
 import Jumpscare from "./Jumpscare.js";
 export default class Animatronic {
     constructor(name) {
@@ -7,8 +8,8 @@ export default class Animatronic {
         this.name = name;
         this.jumpscare = new Jumpscare();
     }
-    addSprite(sprite) {
-        this.sprites.push(sprite);
+    addSprite(animatronicSpriteInfo) {
+        this.sprites.push(new AnimatronicSprite(animatronicSpriteInfo));
     }
     addJumpscare(image) {
         console.log(image);

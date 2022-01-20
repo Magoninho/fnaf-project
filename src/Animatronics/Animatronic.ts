@@ -17,8 +17,8 @@ export default class Animatronic {
 
 	}
 
-	public addSprite(sprite: AnimatronicSprite) {
-		this.sprites.push(sprite);
+	public addSprite(animatronicSpriteInfo: AnimatronicSpriteInfo) {
+		this.sprites.push(new AnimatronicSprite(animatronicSpriteInfo));
 	}
 
 
