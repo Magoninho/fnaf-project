@@ -26,11 +26,10 @@ export default class Game {
 	}
 
 	public async start() {
-
 		let loading = document.createElement("h1");
-		loading.innerHTML = "loading...";
 		document.body.appendChild(loading);
 
+		loading.innerHTML = "loading cameras...";
 		// setting up cameras with images relative to index.html
 		await this.cameraSystem.setup([
 			new Camera(0, await ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
@@ -41,7 +40,7 @@ export default class Game {
 		]);
 
 		
-
+		loading.innerHTML = "loading animatronic system...";
 		await this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
 
 		this.cameraSystem.getCameras()[0].name = "Lobby";
@@ -77,33 +76,6 @@ export default class Game {
 		})
 		document.body.appendChild(btnChica);
 
-
-
-
-
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(FREDDY);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-		// let bonnieInterval = setInterval(() => {
-		// 	this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE)
-		// 	this.cameraSystem.updateAnimatronics();
-		// 	(document.getElementById("hallway-audio") as HTMLAudioElement).play();
-		// 	popup("bonnie se move <br><img src='https://i.pinimg.com/474x/c6/76/6d/c6766d4465593500f603ee7941cc34af.jpg'>");
-		// 	clearInterval(bonnieInterval); // TEMP
-		// }, 5000);
-
-		// let chicaInterval = setInterval(() => {
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA)
-		// 	this.cameraSystem.updateAnimatronics();
-		// 	// popup("*chica se move*");
-		// 	clearInterval(chicaInterval); // TEMP
-		// }, 15000);
-
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-		// this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
 		this.cameraSystem.updateCameras();
 
 		(document.getElementById('ambience') as HTMLAudioElement).play();
@@ -156,21 +128,5 @@ export default class Game {
 
 	public setCameraSystem(cameraSystem: CameraSystem): void {
 		this.cameraSystem = cameraSystem;
-	}
-
-	public getCanvas(): HTMLCanvasElement {
-		return this.canvas;
-	}
-
-	public setCanvas(canvas: HTMLCanvasElement): void {
-		this.canvas = canvas;
-	}
-
-	public getCtx(): CanvasRenderingContext2D {
-		return this.ctx;
-	}
-
-	public setCtx(ctx: CanvasRenderingContext2D): void {
-		this.ctx = ctx;
 	}
 }
