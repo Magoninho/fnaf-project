@@ -26,8 +26,8 @@ export default class Game {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             let loading = document.createElement("h1");
-            loading.innerHTML = "loading...";
             document.body.appendChild(loading);
+            loading.innerHTML = "loading cameras...";
             // setting up cameras with images relative to index.html
             yield this.cameraSystem.setup([
                 new Camera(0, yield ImageUtils.loadImageFromUrl("images/cameras/camera0.png")),
@@ -35,6 +35,7 @@ export default class Game {
                 new Camera(2, yield ImageUtils.loadImageFromUrl("images/cameras/camera2.png")),
                 new Camera(3, yield ImageUtils.loadImageFromUrl("images/cameras/camera3.png")),
             ]);
+            loading.innerHTML = "loading animatronic system...";
             yield this.cameraSystem.addAnimatronicSystem(this.animatronicSystem);
             this.cameraSystem.getCameras()[0].name = "Lobby";
             this.cameraSystem.getCameras()[1].name = "Corredor";
@@ -65,27 +66,6 @@ export default class Game {
                 this.debugText(`${this.animatronicSystem.getAnimatronic(CHICA).name} -> CAMERA ${this.animatronicSystem.getAnimatronic(CHICA).cameraIndex}`);
             });
             document.body.appendChild(btnChica);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(FREDDY);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE);
-            // let bonnieInterval = setInterval(() => {
-            // 	this.cameraSystem.animatronicSystem.moveAnimatronic(BONNIE)
-            // 	this.cameraSystem.updateAnimatronics();
-            // 	(document.getElementById("hallway-audio") as HTMLAudioElement).play();
-            // 	popup("bonnie se move <br><img src='https://i.pinimg.com/474x/c6/76/6d/c6766d4465593500f603ee7941cc34af.jpg'>");
-            // 	clearInterval(bonnieInterval); // TEMP
-            // }, 5000);
-            // let chicaInterval = setInterval(() => {
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA)
-            // 	this.cameraSystem.updateAnimatronics();
-            // 	// popup("*chica se move*");
-            // 	clearInterval(chicaInterval); // TEMP
-            // }, 15000);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
-            // this.cameraSystem.animatronicSystem.moveAnimatronic(CHICA);
             this.cameraSystem.updateCameras();
             document.getElementById('ambience').play();
             document.body.removeChild(loading);
@@ -124,18 +104,6 @@ export default class Game {
     }
     setCameraSystem(cameraSystem) {
         this.cameraSystem = cameraSystem;
-    }
-    getCanvas() {
-        return this.canvas;
-    }
-    setCanvas(canvas) {
-        this.canvas = canvas;
-    }
-    getCtx() {
-        return this.ctx;
-    }
-    setCtx(ctx) {
-        this.ctx = ctx;
     }
 }
 //# sourceMappingURL=Game.js.map

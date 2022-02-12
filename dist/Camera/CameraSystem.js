@@ -69,26 +69,29 @@ export default class CameraSystem {
                 y: 400
             }
         };
-        // FIXME: Store first, then render
         for (let c = 0; c < this.getCameras().length; c++) {
-            const btnIndex = buttonInfo[`button${c}`];
-            const btn = new Button(btnIndex.innerText, btnIndex.x, btnIndex.y, 50, 35);
+            const currentButton = buttonInfo[`button${c}`];
+            const btn = new Button(currentButton.innerText, currentButton.x, currentButton.y, 50, 35);
+            // setting the first camera to have button enabled
             if (this.currentCamera == c)
                 btn.setClicked(true);
+            this.buttons.push(btn);
+        }
+        for (let b = 0; b < this.buttons.length; b++) {
+            let btn = this.buttons[b];
             canvas.addEventListener("click", (evt) => {
                 let mousePos = Input.getMousePos(canvas, evt);
                 if (btn.isInside(mousePos)) {
-                    btn.click((function () { this.setCamera(c); }.bind(this)));
+                    btn.click((function () { this.setCamera(b); }.bind(this))); // adding event to button
+                    // uncheking all buttons before checking the current one
+                    for (let i = 0; i < this.buttons.length; i++) {
+                        this.buttons[i].setClicked(false);
+                    }
                     btn.setClicked(true);
                     document.getElementById("camera-change-audio").load();
                     document.getElementById("camera-change-audio").play();
                 }
-                else {
-                    btn.setClicked(false);
-                    console.log(mousePos);
-                }
             });
-            this.buttons.push(btn);
         }
     }
     render(ctx) {

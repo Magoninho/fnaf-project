@@ -1,3 +1,5 @@
+these are just some locations for animated sprites in the office (e.g. the fan)
+
 fan:
 	x: 780
 	y: 303
