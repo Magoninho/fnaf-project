@@ -6,7 +6,6 @@ export default class Button {
 	private y: number;
 	private width: number;
 	private height: number;
-	private event: Function;
 	private clicked: boolean
 
 	constructor(innerText: string, x: number, y: number, width: number, height: number) {
